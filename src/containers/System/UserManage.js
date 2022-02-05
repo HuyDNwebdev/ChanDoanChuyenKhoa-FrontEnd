@@ -1,42 +1,16 @@
 import React, { Component } from "react"
-import { FormattedMessage } from "react-intl"
-import { connect } from "react-redux"
 import "./UserManage.scss"
+import { connect } from "react-redux"
+
 import { getAllUsers } from "../../services"
-
-// handleLogin = async () => {
-//     this.setState({ errMessage: "" })
-//     try {
-//       let data = await handleLogin(this.state.username, this.state.password)
-
-//       if (data && data.errCode !== 0) {
-//         this.setState({
-//           errMessage: data.message,
-//         })
-//       }
-
-//       if (data && data.errCode === 0) {
-//         this.props.userLoginSuccess(data.user)
-//         console.log("login succeeds")
-//       }
-//     } catch (error) {
-//       if (error.response) {
-//         if (error.response.data) {
-//           this.setState({
-//             errMessage: error.response.data.message,
-//           })
-//         }
-//       }
-//       // console.log(error)
-//       //
-//     }
-//   }
+import ModalUser from "./ModalUser"
 
 class UserManage extends Component {
   constructor(props) {
     super(props)
     this.state = {
       arrUsers: [],
+      isOpenModalUser: false,
     }
   }
 
@@ -48,11 +22,35 @@ class UserManage extends Component {
       })
     }
   }
+  handleAddnewUser = () => {
+    this.setState({
+      isOpenModalUser: true,
+    })
+  }
+
+  toggleUserModal = () => {
+    // this.setState({
+    //   isOpenModalUser: !this.state.isOpenModalUser,
+    // })
+    console.log("Vo dc toggleUserModal")
+  }
 
   render() {
     return (
       <div className="user-container">
+        <ModalUser
+          isOpen={this.state.isOpenModalUser}
+          toggleFromParent={() => this.toggleUserModall}
+        />
         <div className="title text-center">Manage users with React</div>
+        <div className="mx-3">
+          <button
+            className="btn btn-primary px-3"
+            onClick={() => this.handleAddnewUser()}
+          >
+            <i class="fas fa-plus"></i> Add new user
+          </button>
+        </div>
         <div className="user-table mt-3 mx-3">
           <table id="customers">
             <tr>
@@ -65,7 +63,6 @@ class UserManage extends Component {
 
             {this.state.arrUsers &&
               this.state.arrUsers.map((item, index) => {
-                console.log("check map", item, index)
                 return (
                   <tr className="divClass">
                     <td>{item.email}</td>
@@ -94,7 +91,6 @@ class UserManage extends Component {
 const mapStateToProps = (state) => {
   return {}
 }
-
 const mapDispatchToProps = (dispatch) => {
   return {}
 }
