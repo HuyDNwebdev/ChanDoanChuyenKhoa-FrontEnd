@@ -2,8 +2,15 @@ import React, { Component } from "react"
 import "./UserManage.scss"
 import { connect } from "react-redux"
 
-import { getAllUsers, createNewUserService } from "../../services"
+import {
+  getAllUsers,
+  createNewUserService,
+  DeleteUserService,
+  UpdateUserService,
+} from "../../services"
 import ModalUser from "./ModalUser"
+import ModalEditUser from "./ModalEditUser"
+import { emitter } from "../../utils/emitter"
 
 class UserManage extends Component {
   constructor(props) {
@@ -11,6 +18,8 @@ class UserManage extends Component {
     this.state = {
       arrUsers: [],
       isOpenModalUser: false,
+      isOpenModalEditUser: false,
+      userEdit: {},
     }
   }
 
@@ -27,18 +36,16 @@ class UserManage extends Component {
     }
   }
 
-  handleAddnewUser = () => {
-    this.setState({
-      isOpenModalUser: true,
-    })
-  }
-
   toggleUserModal = () => {
     this.setState({
       isOpenModalUser: !this.state.isOpenModalUser,
     })
   }
-
+  handleAddnewUser = () => {
+    this.setState({
+      isOpenModalUser: true,
+    })
+  }
   createNewUser = async (data) => {
     try {
       let response = await createNewUserService(data)
@@ -47,11 +54,50 @@ class UserManage extends Component {
       } else {
         await this.getAllUsersFromReact()
         this.toggleUserModal()
+
+        emitter.emit("EVENT_CLEAR_MODAL_DATA")
       }
     } catch (e) {
       console.log(e)
     }
-    // console.log(data)
+  }
+
+  toggleUserEditModal = () => {
+    this.setState({
+      isOpenModalEditUser: !this.state.isOpenModalEditUser,
+    })
+  }
+  handleEditUser = (user) => {
+    this.setState({
+      isOpenModalEditUser: true,
+      userEdit: user,
+    })
+  }
+  doEditUser = async (data) => {
+    try {
+      let response = await UpdateUserService(data)
+      if (response && response.errCode !== 0) {
+        alert(response.errMessage)
+      } else {
+        await this.getAllUsersFromReact()
+        this.toggleUserEditModal()
+      }
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  handleDeleteUser = async (userId) => {
+    try {
+      let response = await DeleteUserService(userId)
+      if (response && response.errCode !== 0) {
+        alert(response.message)
+      } else {
+        await this.getAllUsersFromReact()
+      }
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   render() {
@@ -62,6 +108,14 @@ class UserManage extends Component {
           toggleFromParent={this.toggleUserModal}
           createNewUser={this.createNewUser}
         />
+        {this.state.isOpenModalEditUser && (
+          <ModalEditUser
+            isOpen={this.state.isOpenModalEditUser}
+            toggleFromParent={this.toggleUserEditModal}
+            currentUser={this.state.userEdit}
+            editUser={this.doEditUser}
+          />
+        )}
         <div className="title text-center">Manage users with React</div>
         <div className="mx-3">
           <button
@@ -92,13 +146,18 @@ class UserManage extends Component {
                       <td>{item.address}</td>
                       <td>
                         <button className="btn-edit">
-                          <i className="fas fa-pencil-alt"></i>
+                          <i
+                            className="fas fa-pencil-alt"
+                            onClick={() => this.handleEditUser(item)}
+                          ></i>
                         </button>
-                        <button className="btn-delete">
+                        <button
+                          className="btn-delete"
+                          onClick={() => this.handleDeleteUser(item.id)}
+                        >
                           <i className="fas fa-trash"></i>
                         </button>
                       </td>
-                      {/* <td>{item.action}</td> */}
                     </tr>
                   )
                 })}
@@ -110,11 +169,5 @@ class UserManage extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {}
-}
-const mapDispatchToProps = (dispatch) => {
-  return {}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserManage)
+export default connect()(UserManage)
+// mapStateToProps, mapDispatchToProps

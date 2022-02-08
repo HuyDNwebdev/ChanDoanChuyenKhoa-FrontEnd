@@ -9,8 +9,21 @@ const getAllUsers = (inputId) => {
 }
 
 const createNewUserService = (data) => {
-  console.log("Check data from service: ", data)
   return axios.post("/api/create-new-user", data)
 }
 
-export { handleLogin, getAllUsers, createNewUserService }
+const DeleteUserService = (id) => {
+  return axios.delete("/api/delete-user", { data: { id: id } })
+}
+
+const UpdateUserService = (data) => {
+  return axios.put("/api/edit-user", data)
+}
+
+export {
+  handleLogin,
+  getAllUsers,
+  createNewUserService,
+  DeleteUserService,
+  UpdateUserService,
+}
