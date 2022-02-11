@@ -82,23 +82,26 @@
         }
       }
       .language-vi {
-        cursor: pointer;
         opacity: 0.3;
+        cursor: pointer;
+
         &.active {
           opacity: 1;
           span {
             color: orange;
             font-size: 15px;
+            cursor: pointer;
           }
         }
         &:hover {
           opacity: 0.9;
+          cursor: pointer;
         }
         margin-right: 12px;
       }
       .language-en {
         margin: 0 6px;
-        cursor: pointer;
+
         opacity: 0.3;
 
         &.active {
@@ -106,10 +109,12 @@
           span {
             color: blue;
             font-size: 15px;
+            cursor: pointer;
           }
         }
         &:hover {
           opacity: 0.9;
+          cursor: pointer;
         }
       }
     }
@@ -208,23 +213,22 @@
       rgba(255, 255, 255, 0.9),
       rgba(255, 255, 255, 1)
     );
-    padding-top: 30px;
-    padding-bottom: 20px;
+    // border: 3px solid green;
+
     .options {
       // border: 3px solid green;
       display: flex;
       flex-direction: row;
       justify-content: center;
+
       height: 100%;
       .option-child {
-        width: 160px;
-        // border: 1px solid red;
+        width: 8%;
         display: flex;
         text-align: center;
         flex-direction: column;
         color: #333;
         justify-content: center;
-        flex-wrap: wrap;
         .text-child {
           font-weight: 700;
           font-size: 16px;
@@ -232,7 +236,6 @@
             color: #49bce2;
           }
           cursor: pointer;
-          // border: 1px solid red;
           width: 70%;
           margin: 0 auto;
         }
@@ -257,13 +260,11 @@
           border-radius: 50%;
           width: 50px;
           height: 50px;
-          margin: 2px auto;
+          margin: 12px auto;
+          margin-top: -10px;
           background-size: 32px;
-          display: flex;
           background-repeat: no-repeat;
           background-position: center;
-          justify-content: center;
-          align-items: center;
           cursor: pointer;
           box-shadow: 0px 1px 2px #333;
         }
@@ -276,11 +277,8 @@
           height: 50px;
           margin: 2px auto;
           background-size: 32px;
-          display: flex;
           background-repeat: no-repeat;
           background-position: center;
-          justify-content: center;
-          align-items: center;
           cursor: pointer;
           box-shadow: 0px 1px 2px #333;
         }

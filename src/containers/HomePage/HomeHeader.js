@@ -169,6 +169,7 @@ class HomeHeader extends Component {
             </div>
           </div>
         </div>
+        
       </React.Fragment>
     )
   }
