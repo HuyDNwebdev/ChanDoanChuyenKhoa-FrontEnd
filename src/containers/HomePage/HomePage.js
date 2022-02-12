@@ -1,40 +1,52 @@
 import React, { Component } from "react"
-import { Redirect } from "react-router-dom"
 import { connect } from "react-redux"
 import HomeHeader from "./HomeHeader"
+import "./HomePage.scss"
 import Specialty from "./Section/Specialty"
+import MedicalFacility from "./Section/MedicalFacility"
+import OutstandingDoctor from "./Section/OutstandingDoctor"
+import HandBook from "./Section/HandBook"
 
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
-const dataTop = [
-  {
-    url: "https://www.wanderon.in/triplist/meghalaya-road-trip/wanderon-meghalaya-1.jpg",
-  },
-  {
-    url: "https://www.wanderon.in/triplist/bir-kasol-kheerganga/wanderon-kasol-1.jpg",
-  },
-  {
-    url: "https://www.wanderon.in/triplist/kasol-kheerganga-manali/wanderon-manali-1.jpg",
-  },
-  {
-    url: "https://www.wanderon.in/triplist/parvati-valley-summer/wanderon-parvati-1.jpg",
-  },
-  { url: "https://www.wanderon.in/triplist/spiti-summer/wanderon-spiti-1.jpg" },
-  {
-    url: "https://www.wanderon.in/triplist/spiti-circuit-biking/wanderon-spiti-18.jpg",
-  },
-  {
-    url: "https://www.wanderon.in/triplist/manali-leh-manali/wanderon-ladakh-1.jpg",
-  },
-]
+import LeftArrow from "../../assets/left-arrow.svg"
+import RightArrow from "../../assets/right-arrow.svg"
+import {
+  dataSpecialty,
+  dataFacility,
+  dataDoctor,
+  dataHandBook,
+} from "./Section/dataSection"
+
+const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
+  <img src={LeftArrow} alt="prevArrow" {...props} />
+)
+
+const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
+  <img src={RightArrow} alt="nextArrow" {...props} />
+)
+
 class HomePage extends Component {
   render() {
+    let settings = {
+      dots: false,
+      infinite: false,
+      speed: 500,
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      initialSlide: 0,
+      prevArrow: <SlickArrowLeft />,
+      nextArrow: <SlickArrowRight />,
+    }
     return (
       <div>
         <HomeHeader />
-        <Specialty />
+        <Specialty settings={settings} specialty={dataSpecialty} />
+        <MedicalFacility settings={settings} medicalFacility={dataFacility} />
 
+        <OutstandingDoctor settings={settings} doctor={dataDoctor} />
+        <HandBook settings={settings} dataHandBook={dataHandBook} />
         <div style={{ height: "400px" }}></div>
       </div>
     )
