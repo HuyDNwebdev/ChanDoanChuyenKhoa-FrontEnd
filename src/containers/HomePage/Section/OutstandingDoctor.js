@@ -14,7 +14,7 @@ class OutstandingDoctor extends Component {
           {this.props.doctor.map((item, index) => {
             return (
               <div className="section-content-card" key={index}>
-                <img clasName="doctor-image" src={item.url} alt="hero_img" />
+                <img className="doctor-image" src={item.url} alt="hero_img" />
 
                 <div className="section-content-date-time">
                   <img

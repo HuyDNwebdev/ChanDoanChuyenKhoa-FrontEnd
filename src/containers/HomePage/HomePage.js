@@ -1,23 +1,29 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import HomeHeader from "./HomeHeader"
+import HomeFooter from "./HomeFooter"
 import "./HomePage.scss"
-import Specialty from "./Section/Specialty"
-import MedicalFacility from "./Section/MedicalFacility"
-import OutstandingDoctor from "./Section/OutstandingDoctor"
-import HandBook from "./Section/HandBook"
 
-import "slick-carousel/slick/slick.css"
-import "slick-carousel/slick/slick-theme.css"
+import {
+  Specialty,
+  MedicalFacility,
+  OutstandingDoctor,
+  HandBook,
+  About,
+} from "./Section"
 
-import LeftArrow from "../../assets/left-arrow.svg"
-import RightArrow from "../../assets/right-arrow.svg"
 import {
   dataSpecialty,
   dataFacility,
   dataDoctor,
   dataHandBook,
 } from "./Section/dataSection"
+
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
+
+import LeftArrow from "../../assets/left-arrow.svg"
+import RightArrow from "../../assets/right-arrow.svg"
 
 const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
   <img src={LeftArrow} alt="prevArrow" {...props} />
@@ -47,7 +53,8 @@ class HomePage extends Component {
 
         <OutstandingDoctor settings={settings} doctor={dataDoctor} />
         <HandBook settings={settings} dataHandBook={dataHandBook} />
-        <div style={{ height: "400px" }}></div>
+        <About />
+        <HomeFooter />
       </div>
     )
   }
