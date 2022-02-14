@@ -8,7 +8,8 @@
     "select-doctor": "Choose a good doctor",
     "medical-package": "Medical Package",
     "general-health-check": "General health check",
-    "support": "Support"
+    "support": "Support",
+    "welcome": "Welcome, "
   },
   "banner": {
     "title1": "Medical Background",
@@ -60,6 +61,19 @@
       "system-parameter": {
         "header": "System-parameter"
       }
+    },
+    "admin": {
+      "manage-user": "User",
+      "manage-doctor": "Doctor Manage",
+      "manage-admin": "admin Manage",
+      "crud": "CRUD user",
+      "crud-redux": "CRUD Redux",
+      "clinic": "Clinic",
+      "clinic-manage": "Clinic Manage",
+      "specialty": "Specialty",
+      "specialty-manage": "Specialty Manage",
+      "handbook": "Handbook",
+      "handbook-manage": "Handbook Manage"
     }
   },
   "system": {

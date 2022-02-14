@@ -15,8 +15,8 @@ class Header extends Component {
   }
 
   render() {
-    const { processLogout, language } = this.props
-
+    const { processLogout, language, userInfo } = this.props
+    console.log(userInfo)
     return (
       <div className="header-container">
         {/* thanh navigator */}
@@ -24,13 +24,9 @@ class Header extends Component {
           <Navigator menus={adminMenu} />
         </div>
         <div className="languages">
-          <span
-            className={
-              language === LANGUAGES.EN ? "active language-en" : "language-en"
-            }
-            onClick={() => this.handleChangeLanguages(LANGUAGES.EN)}
-          >
-            EN
+          <span className="welcome">
+            <FormattedMessage id="home-header.welcome" />
+            {userInfo && userInfo.firstName ? userInfo.firstName : ""}
           </span>
           <span
             className={
@@ -40,6 +36,15 @@ class Header extends Component {
           >
             VN
           </span>
+          <span
+            className={
+              language === LANGUAGES.EN ? "active language-en" : "language-en"
+            }
+            onClick={() => this.handleChangeLanguages(LANGUAGES.EN)}
+          >
+            EN
+          </span>
+
           <div
             className="btn btn-logout"
             onClick={processLogout}
@@ -57,6 +62,7 @@ class Header extends Component {
 const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.user.isLoggedIn,
+    userInfo: state.user.userInfo,
     language: state.app.language,
   }
 }
