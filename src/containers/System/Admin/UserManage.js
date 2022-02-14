@@ -7,10 +7,10 @@ import {
   createNewUserService,
   DeleteUserService,
   UpdateUserService,
-} from "../../services"
-import ModalUser from "./ModalUser"
-import ModalEditUser from "./ModalEditUser"
-import { emitter } from "../../utils/emitter"
+} from "../../../services"
+import ModalUser from "../ModalUser"
+import ModalEditUser from "../ModalEditUser"
+import { emitter } from "../../../utils/emitter"
 
 class UserManage extends Component {
   constructor(props) {

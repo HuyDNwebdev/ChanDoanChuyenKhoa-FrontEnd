@@ -153,5 +153,19 @@
       "remove-assign-fail": "Bỏ gán gói dịch vụ cho khách hàng thất bại",
       "sure-delete-assign": "Bạn có chắc chắn muốn bỏ gán gói dịch vụ cho khách hàng?"
     }
+  },
+  "manage-user": {
+    "add": "Thêm mới người dùng",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "firstName": "Tên",
+    "lastName": "Họ",
+    "phone": "Số điện thoại",
+    "address": "Địa chỉ",
+    "roleId": "Vai trò",
+    "gender": "Giới tính",
+    "image": "Ảnh đại diện",
+    "position": "Chức danh",
+    "submit": "Lưu user"
   }
 }
