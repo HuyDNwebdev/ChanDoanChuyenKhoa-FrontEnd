@@ -77,6 +77,12 @@ const adminReducer = (state = initialState, action) => {
       return {
         ...state,
       }
+    case actionTypes.CREATE_USER_SUCCESS:
+      state.roles = action.data
+
+      return {
+        ...state,
+      }
     default:
       return state
   }
