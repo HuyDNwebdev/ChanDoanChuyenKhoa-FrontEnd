@@ -8,6 +8,7 @@ import "react-image-lightbox/style.css"
 
 import * as actions from "../../../store/actions"
 import "./UserRedux.scss"
+import TableManagerUser from "./TableManagerUser"
 
 class UserRedux extends Component {
   constructor(props) {
@@ -75,6 +76,22 @@ class UserRedux extends Component {
       this.setState({
         roleArr: this.props.role,
         role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : "",
+      })
+    }
+
+    if (prevProps.users !== this.props.users) {
+      this.setState({
+        email: "",
+        password: "",
+        firstName: "",
+        lastName: "",
+        phoneNumber: "",
+        address: "",
+        position: "",
+        gender: "",
+        role: "",
+        avatar: "",
+        imagePreviewUrl: "",
       })
     }
   }
@@ -336,7 +353,7 @@ class UserRedux extends Component {
                   </label>
 
                   <div
-                    className="preview-img"
+                    className="preview-img col-3"
                     style={{
                       backgroundImage: `url(${imagePreviewUrl})`,
                     }}
@@ -344,7 +361,7 @@ class UserRedux extends Component {
                   ></div>
                 </div>
               </div>
-              <div className="col-12">
+              <div className="col-12 my-3">
                 <button
                   className="btn btn-primary"
                   onClick={() => this.handleSaveUser()}
@@ -352,9 +369,13 @@ class UserRedux extends Component {
                   <FormattedMessage id="manage-user.submit" />
                 </button>
               </div>
+              <div className="col-12 mb-5">
+                <TableManagerUser />
+              </div>
             </div>
           </div>
         </div>
+
         {isOpenImage && (
           <Lightbox
             mainSrc={imagePreviewUrl}
@@ -368,8 +389,6 @@ class UserRedux extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // processLogout: () => dispatch(actions.processLogout()),
-    // changeLanguages: (lang) => dispatch(actions.changeLanguageApp(lang)),
     getGenderStart: () => dispatch(actions.fetchGenderStart()),
     getPositionStart: () => dispatch(actions.fetchPositionStart()),
     getRoleStart: () => dispatch(actions.fetchRoleStart()),
@@ -384,6 +403,7 @@ const mapStateToProps = (state) => {
     isLoadingGender: state.admin.isLoadingGender,
     position: state.admin.positions,
     role: state.admin.roles,
+    users: state.admin.users,
   }
 }
 
