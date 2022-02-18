@@ -3,13 +3,6 @@ import "./TableManagerUser.scss"
 import { connect } from "react-redux"
 import * as actions from "../../../store/actions"
 
-// import {
-//   getAllUsers,
-//   createNewUserService,
-//   DeleteUserService,
-//   UpdateUserService,
-// } from "../../../services"
-
 class TableManagerUser extends Component {
   constructor(props) {
     super(props)
@@ -32,6 +25,10 @@ class TableManagerUser extends Component {
 
   handleDeleteUser = (id) => {
     this.props.deleteUserStart(id)
+  }
+
+  handleEditUser = (user) => {
+    this.props.handleEditFromChild(user)
   }
 
   render() {
@@ -57,7 +54,10 @@ class TableManagerUser extends Component {
                   <td>{item.lastName}</td>
                   <td>{item.address}</td>
                   <td>
-                    <button className="btn-edit">
+                    <button
+                      className="btn-edit"
+                      onClick={() => this.handleEditUser(item)}
+                    >
                       <i className="fas fa-pencil-alt"></i>
                     </button>
                     <button

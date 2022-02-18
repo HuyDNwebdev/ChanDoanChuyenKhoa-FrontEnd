@@ -166,6 +166,7 @@
     "gender": "Gender",
     "image": "Avatar",
     "position": "Position",
-    "submit": "Submit"
+    "submit": "Submit",
+    "edit": "Save changes"
   }
 }

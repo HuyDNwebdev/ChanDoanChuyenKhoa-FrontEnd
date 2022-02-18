@@ -166,6 +166,7 @@
     "gender": "Giới tính",
     "image": "Ảnh đại diện",
     "position": "Chức danh",
-    "submit": "Lưu user"
+    "submit": "Lưu user mới",
+    "edit": "Lưu thay đổi"
   }
 }
